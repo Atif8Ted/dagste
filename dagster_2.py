@@ -2,7 +2,7 @@ from dagster import execute_pipeline , pipeline,solid
 
 @solid
 def get_number(_):
- return [1,3]
+ yield [1,3]
 
 
 @solid
