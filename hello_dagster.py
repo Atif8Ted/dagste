@@ -7,6 +7,8 @@ def get_name(_):
 @solid
 def hello(context,name:str):
     context.log.info("Hello,{0}!".format(name))
+    # print("Hello,{0}!".format(name))
+
 
 
 @pipeline
