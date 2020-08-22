@@ -6,8 +6,9 @@ def get_number(_):
 
 
 @solid
-def get_sum(context,a):
+def get_sum(context,a:list):
     context.log.info("Result is : "+str(sum(a)))
+    print("Output from print method :{0} ".format( sum(a)))
 @pipeline
 def run_pipeline():
     get_sum(get_number())
