@@ -1,3 +1,6 @@
+"""TO execute:
+# dagster pipeline execute -f cereal_pipeline_parameterized.py -c input_env_for_parametized.yaml
+"""
 import csv
 import os
 os.environ['PYTHONLEGACYWINDOWSSTDIO']='enable'
@@ -20,7 +23,7 @@ def sort_by_calories(context,cereals):
     sorted_cereals=sorted(cereals,key=lambda cereal:cereal['calories'])
 
     context.log.info(
-        'Least caloric cereal : {least_calorific}'.format(least_calorif=sorted_cereals[0]['name','calorie'])
+        'Least caloric cereal : {least_calorific}'.format(least_calorific=sorted_cereals[0]['name'])
     )
 
     context.log.info(
@@ -43,3 +46,6 @@ run_config={
         'read_csv':{'inputs':{'csv_path':{'value':'cereal.csv'}}}
     }
 }
+
+result=execute_pipeline(input_pipeline, run_config=run_config)
+assert result.success
