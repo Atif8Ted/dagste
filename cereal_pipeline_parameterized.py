@@ -17,5 +17,29 @@ def read_csv(context, csv_path):
 
 @solid
 def sort_by_calories(context,cereals):
-    sorted_
+    sorted_cereals=sorted(cereals,key=lambda cereal:cereal['calories'])
 
+    context.log.info(
+        'Least caloric cereal : {least_calorific}'.format(least_calorif=sorted_cereals[0]['name','calorie'])
+    )
+
+    context.log.info(
+        'Most caloric cereal: {most_caloric}'.format(
+            most_caloric=sorted_cereals[-1]['name']
+        )
+    )
+    return {
+        'least_caloric': sorted_cereals[0],
+        'most_caloric': sorted_cereals[-1]
+    }
+
+@pipeline
+def input_pipeline():
+    sort_by_calories(read_csv())
+
+
+run_config={
+    'solids':{
+        'read_csv':{'inputs':{'csv_path':{'value':'cereal.csv'}}}
+    }
+}
